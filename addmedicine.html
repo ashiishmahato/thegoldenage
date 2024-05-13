@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Medicine Reminder</title>
+    <link rel="stylesheet" href="styless.css">
+
+</head>
+<body>
+    <div class="medicine-form">
+        <h2>Add Medicine Reminder</h2>
+        <form id="medicineReminderForm">
+            <label for="medicineName">Medicine Name:</label>
+            <input type="text" id="medicineName" name="medicineName" required>
+            
+            <label for="timesPerDay">Times per Day:</label>
+            <select id="timesPerDay" name="timesPerDay">
+                <option value="1">Once</option>
+                <option value="2">Twice</option>
+                <option value="3">Thrice</option>
+            </select>
+            
+            <input type="submit" value="Save Reminder">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('medicineReminderForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var medicineName = document.getElementById('medicineName').value;
+            var timesPerDay = document.getElementById('timesPerDay').value;
+
+            
+            var reminder = {
+                medicineName: medicineName,
+                timesPerDay: timesPerDay
+            };
+            localStorage.setItem('medicineReminder', JSON.stringify(reminder));
+
+           
+            document.getElementById('medicineReminderForm').reset();
+        });
+    </script>
+</body>
+</html>
